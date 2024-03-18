@@ -224,29 +224,28 @@
   \begin{parts}
   \part $f_1 + f_2 + f_3 + \ldots + f_n = f_{n+2} - 1$.
     \begin{solution}
-      We are given the statement $P(n): f_1 + f_2 + f_3 + \ldots + f_n = f_{n+2} - 1$.\\
+      We are given the statement $P(n): \sum_{i=1}^n f_i = f_{n+2} - 1$.\\
       Implicitly, we see that $n\ge 1$.\\
       We provide a proof by mathematical induction for $P(n)$ over the domain.
 
     \begin{proof} $P(n)$ is true for $n=\ge 1$.
 
-      \underline{Base case}: $P(1)$:\\
+      \underline{Base case}: $P(1)$:
       \begin{align*}
         f_1 &= f_{1+2} - 1\\
-        1 &= f_{3} - 1\\
-        1 &= 2 - 1\\
-        1 &= 1
+        \implies 1 &= f_{3} - 1\\
+        \implies 1 &= 2 - 1\\
+        \implies 1 &= 1
       \end{align*}
         $P(1)$ is true.\\
         The base case for the proof by mathematical induction holds.
 
       \underline{Inductive step}:\\
-      Consider IH: $P(k): k^2\le k!$ or
       \begin{align*}
-        k!\ge k^2 &\implies (k+1)k! \ge (k+1)k^2\\
-                  &\implies (k+1)! \ge (k+1)k^2\\
-                  &\implies (k+1)! \ge (k+1)k^2 \ge (k+1)(k+1)\\
-                  &\implies (k+1)! \ge (k+1)^2
+        IH: P(k): \sum_{i=1}^k f_i = f_{k+2} - 1 &\implies \sum_{i=1}^k f_i  +f_{k+1}= f_{k+2} - 1 +f_{k+1}\\
+                                           &\implies \sum_{i=1}^{k+1} f_i= f_{k+2} +f_{k+1} - 1\\
+                                           &\implies \sum_{i=1}^{k+1} f_i= f_{k+3} - 1\\
+                                           &\implies P(k+1)
       \end{align*}
       This completes the inductive step and the proof of $P(n)$ by mathematical induction.
       \end{proof}
@@ -254,7 +253,31 @@
 
   \part $f_2 + f_4 + f_6 + \ldots + f_{2n} = f_{2n+1} - 1$.
     \begin{solution}
-      % Enter your solution here.
+      We are given the statement $P(n): \sum_{i=1}^n f_{2i} = f_{2n+1} - 1$.\\
+      Implicitly, we see that $n\ge 1$.\\
+      We provide a proof by mathematical induction for $P(n)$ over the domain.
+
+    \begin{proof} $P(n)$ is true for $n=\ge 1$.
+
+      \underline{Base case}: $P(1)$:
+      \begin{align*}
+        f_{2(1)} &= f_{2(1)+1} - 1\\
+        \implies f_2 &= f_3 - 1\\
+        \implies 1 &= 2 - 1\\
+        \implies 1 &= 1
+      \end{align*}
+        $P(1)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+      \begin{align*}
+        IH: P(k): \sum_{i=1}^k f_{2i} = f_{2k+1} - 1 &\implies \sum_{i=1}^k f_{2i}  +f_{2(k+1)}= f_{2k+1} - 1 +f_{2(k+1)}\\
+                                                     &\implies \sum_{i=1}^{k+1} f_{2i} = f_{2k+1} +f_{2k+2} - 1\\
+                                                     &\implies \sum_{i=1}^{k+1} f_{2i}= f_{2k+3} - 1 = f_{2(k+1)+1} - 1\\
+                                                     &\implies P(k+1)
+      \end{align*}
+      This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
   \end{parts}
 

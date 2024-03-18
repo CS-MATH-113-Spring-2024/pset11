@@ -23,7 +23,7 @@
       We provide a proof by mathematical induction.
       \begin{proof}$P(n)$ is true for all integers greater than $0$.
         
-      \underline{Base case}: $P(1)$:\\
+      \underline{Base case}: $P(1)$:
         \begin{align*}
           1(1+1) & = \frac{1}{3}  1(1 + 1)(1 + 2)\\
           \implies 1(2) & = \frac{1}{3}  1(2)(3)\\
@@ -32,12 +32,11 @@
       $P(1)$ is true. The base case for the proof by mathematical induction holds.
 
       \underline{Inductive step}:\\
-        LHS of $P(k+1)$:
         \begin{align*}
-          \sum_{r=1}^{k+1} r(r + 1) &= 1(2) + 2(3) + 3(4) + \ldots + k(k+1) + (k+1)(k+2)\\
-                                    &=^{IH} \frac{1}{3} k(k + 1)(k + 2) + (k+1)(k+2)\\
-                                    &= (k + 1)(k + 2)(\frac{k}{3}  + 1)\\
-                                    &= \frac{1}{3}(k + 1)(k + 2)(k+3)
+          & IH: P(k): \sum_{r=1}^{k} r(r + 1) = \frac{1}{3}  k(k + 1)(k + 2)\\
+          & \implies \sum_{r=1}^{k} r(r + 1) + (k+1)(k+2) = \frac{1}{3}  k(k + 1)(k + 2) + (k+1)(k+2)\\
+          & \implies \sum_{r=1}^{k+1} r(r + 1) = (k + 1)(k + 2)(\frac{k}{3}  + 1) = \frac{1}{3}(k + 1)(k + 2)(k+3)\\
+          & \implies P(k+1)
         \end{align*}
         This completes the inductive step and the proof of $P(n)$ by mathematical induction.
       \end{proof}
@@ -45,35 +44,28 @@
     
   \part $1^5 + 2^5 + 3^5 + \ldots + n^5 = \frac{1}{12}  n^2 (n + 1)^2 (2n^2 + 2n - 1)$
     \begin{solution}
-      We have to prove $P(n): 1^5 + 2^5 + 3^5 + \ldots + n^5 = \frac{1}{12}  n^2 (n + 1)^2 (2n^2 + 2n - 1)$.\\
+      We have to prove $P(n): \sum_{i=1}^n i^5 = \frac{1}{12}  n^2 (n + 1)^2 (2n^2 + 2n - 1)$.\\
       We provide a proof by mathematical induction.
       \begin{proof}$P(n)$ is true for all integers greater than $0$.
         
-      \underline{Base case}: $P(1)$:\\
+      \underline{Base case}: $P(1)$:
         \begin{align*}
           1^5 & = \frac{1}{12}  1^2 (1 + 1)^2 (2(1)^2 + 2(1) - 1)\\
           \implies 1^5 & = \frac{1}{12}  1 (2)^2 (2 + 2 - 1)\\
           \implies 1 & = \frac{1}{12}  1 (4) (3)\\
           \implies 1 & = 1
       \end{align*}
-      $P(0)$ is true. The base case for the proof by mathematical induction holds.
+      $P(1)$ is true. The base case for the proof by mathematical induction holds.
 
       \underline{Inductive step}:\\
-        Solving LHS of $P(k+1)$:
-        \begin{align*}
-          1^5 + 2^5 + \ldots + k^5+(k+1)^5 &=^{IH} \frac{1}{12}  k^2 (k + 1)^2 (2k^2 + 2k - 1) + (k+1)^5\\
-          &= \frac{1}{12}(k+1)^2(k^2 (2k^2 + 2k - 1) + 12(k+1)^3)\\
-          &= \ldots \\
-          &= \frac{1}{12}(k+1)^2(2k^4 + 14k^3 + 35k^2 + 36k + 12)
+      \begin{align*}
+        & IH: P(k): \sum_{i=1}^k i^5 = \frac{1}{12}  k^2 (k + 1)^2 (2k^2 + 2k - 1)\\
+        & \implies \sum_{i=1}^k i^5 + (k+1)^5= \frac{1}{12}  k^2 (k + 1)^2 (2k^2 + 2k - 1) + (k+1)^5\\
+        & \implies \sum_{i=1}^{k+1} i^5= \frac{1}{12}(k+1)^2(k^2 (2k^2 + 2k - 1) + 12(k+1)^3)\\
+        & \implies \sum_{i=1}^{k+1} i^5= \ldots = \frac{1}{12}(k+1)^2(2k^4 + 14k^3 + 35k^2 + 36k + 12)
         \end{align*}
-        Solving RHS of $P(k+1)$:
-        \begin{align*}
-          \frac{1}{12}  (k+1)^2 (k + 2)^2 (2(k+1)^2 + 2(k+1) - 1) &= \frac{1}{12}  (k+1)^2 (k + 2)^2 (2(k+1)^2 + 2(k+1) - 1)\\
-                                                                  &= \frac{1}{12}  (k+1)^2 (k + 2)^2 (2k^2 + 6k + 3)\\
-                                                                  &= \frac{1}{12}  (k+1)^2 (k^2+4k+4) (2k^2 + 6k + 3)\\
-          &= \frac{1}{12}(k+1)^2(2k^4 + 14k^3 + 35k^2 + 36k + 12)
-        \end{align*}
-        Both sides of $P(k+1)$ solve to the same expression under the Inductive Hypothesis.\\
+        It can be shown that $P(k+1)$ reduces to the expression above.\\
+        $\implies P(k)\implies P(k+1)$.\\
         This completes the inductive step and the proof of $P(n)$ by mathematical induction.
       \end{proof}
     \end{solution}

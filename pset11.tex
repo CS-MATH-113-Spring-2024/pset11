@@ -1,8 +1,13 @@
 \documentclass[a4paper]{exam}
 
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
 \usepackage{geometry}
-\usepackage{amsmath}
-\usepackage{amsfonts}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{Sample Solution}
+\SetWatermarkScale{3}
+\SetWatermarkLightness{.95}
+\printanswers
 
 \title{Problem Set 11: Mathematical Induction}
 \author{CS/MATH 113 Discrete Mathematics}
@@ -20,22 +25,131 @@
   \begin{parts}
   \part  $\sum_{r=1}^{n} r(r + 1) = \frac{1}{3} \cdot n(n + 1)(n + 2)$
     \begin{solution}
-      % Enter your solution here.
+      We have to prove $P(n): \sum_{r=1}^{n} r(r + 1) = \frac{1}{3} \cdot n(n + 1)(n + 2)$.\\
+      We provide a proof by mathematical induction.
+      \begin{proof}$P(n)$ is true for all integers greater than $0$.
+        
+      \underline{Base case}: $P(1)$:
+        \begin{align*}
+          1(1+1) & = \frac{1}{3}  1(1 + 1)(1 + 2)\\
+          \implies 1(2) & = \frac{1}{3}  1(2)(3)\\
+          \implies 2 & = 2
+      \end{align*}
+      $P(1)$ is true. The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+        \begin{align*}
+          & IH: P(k): \sum_{r=1}^{k} r(r + 1) = \frac{1}{3}  k(k + 1)(k + 2)\\
+          & \implies \sum_{r=1}^{k} r(r + 1) + (k+1)(k+2) = \frac{1}{3}  k(k + 1)(k + 2) + (k+1)(k+2)\\
+          & \implies \sum_{r=1}^{k+1} r(r + 1) = (k + 1)(k + 2)(\frac{k}{3}  + 1) = \frac{1}{3}(k + 1)(k + 2)(k+3)\\
+          & \implies P(k+1)
+        \end{align*}
+        This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
     
   \part $1^5 + 2^5 + 3^5 + \ldots + n^5 = \frac{1}{12}  n^2 (n + 1)^2 (2n^2 + 2n - 1)$
     \begin{solution}
-      % Enter your solution here.
+      We have to prove $P(n): \sum_{i=1}^n i^5 = \frac{1}{12}  n^2 (n + 1)^2 (2n^2 + 2n - 1)$.\\
+      We provide a proof by mathematical induction.
+      \begin{proof}$P(n)$ is true for all integers greater than $0$.
+        
+      \underline{Base case}: $P(1)$:
+        \begin{align*}
+          1^5 & = \frac{1}{12}  1^2 (1 + 1)^2 (2(1)^2 + 2(1) - 1)\\
+          \implies 1^5 & = \frac{1}{12}  1 (2)^2 (2 + 2 - 1)\\
+          \implies 1 & = \frac{1}{12}  1 (4) (3)\\
+          \implies 1 & = 1
+      \end{align*}
+      $P(1)$ is true. The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+      \begin{align*}
+        & IH: P(k): \sum_{i=1}^k i^5 = \frac{1}{12}  k^2 (k + 1)^2 (2k^2 + 2k - 1)\\
+        & \implies \sum_{i=1}^k i^5 + (k+1)^5= \frac{1}{12}  k^2 (k + 1)^2 (2k^2 + 2k - 1) + (k+1)^5\\
+        & \implies \sum_{i=1}^{k+1} i^5= \frac{1}{12}(k+1)^2(k^2 (2k^2 + 2k - 1) + 12(k+1)^3)\\
+        & \implies \sum_{i=1}^{k+1} i^5= \ldots = \frac{1}{12}(k+1)^2(2k^4 + 14k^3 + 35k^2 + 36k + 12)
+        \end{align*}
+        It can be shown that $P(k+1)$ reduces to the expression above.\\
+        $\therefore P(k)\implies P(k+1)$.\\
+        This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
 
   \part $5^{2n+1} + 2^{2n+1}$ is divisible by 7.
     \begin{solution}
-      % Enter your solution here.
+      We have to prove $P(n): 5^{2n+1} + 2^{2n+1} = 7m$ for some integer $m$.\\
+      We provide a proof by mathematical induction.
+      \begin{proof}$P(n)$ is true for all integers greater than $0$.
+        
+      \underline{Base case}: $P(1)$:\\
+        \begin{align*}
+          5^{2(1)+1} + 2^{2(1)+1} &= 7m\\
+          \implies 5^{3} + 2^{3} &= 7m\\
+          \implies 125 + 8 &= 7m\\
+          \implies 133 &= 7m
+      \end{align*}
+      The above expression true when $m=19$. Therefore, $P(1)$ is true.\\
+      The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+        \begin{align*}
+          IH: P(k): 5^{2k+1}+2^{2k+1} = 7m &\implies & 5^{2k+1} &= 7m - 2^{2k+1} \\
+                                           &\implies & 5^25^{2k+1} &= 5^2(7m - 2^{2k+1})\\
+                                           &\implies & 5^{2(k+1)+1} &= 5^27m - 5^22^{2k+1}\\
+                                           &\implies & 5^{2(k+1)+1} + 2^{2(k+1)+1} & = 5^27m - 5^22^{2k+1} + 2^{2k+3}\\
+                                           & &  & = 5^27m + 2^{2k+3} - 5^22^{2k+1} \\
+                                           & &  & = 5^27m + 2^{2k+1}(2^2 - 5^2) \\
+                                           & &  & = 5^27m + 2^{2k+1}(4 - 25) \\
+                                           & &  & = 5^27m + 2^{2k+1}(- 21) \\
+                                           & &  & = 7(5^2m - 2^{2k+1}3) \\
+                                           & &  & = 7m_1 \\
+                                           & \implies & P(k+1)
+        \end{align*}
+        This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
     
   \part $a^{2^n} - 1$ is divisible by $8 \times 2^{n-1}$ for all odd integers $a$.
     \begin{solution}
-      % Enter your solution here.
+      We have to prove $P(n): a^{2^n} - 1 = 2^{n+2}m$ for some integer $m$.\\
+      We provide a proof by mathematical induction.
+      \begin{proof} $P(n)$ is true for all integers greater than $0$.
+        
+        We denote the odd integer as $a=2i+1$ for some integer, $i$.
+        
+      \underline{Base case}: $P(1)$:
+      \begin{align*}
+        (2i+1)^{2^1} -1 &= 2^{1+2}m\\
+        \implies 4i^2+4i+1-1 &= 2^3m\\
+        \implies 4i^2+4i &= 8m\\
+        \implies 4(i^2+i) &= 8m
+        \end{align*}
+        Now, $i$ may be odd or even.\\
+        If $i$ is odd, then $i^2$ is odd and $i^2+i$ is even.\\
+        Otherwise, if $i$ is even, then $i^2$ is even and $i^2+i$ is even.\\
+        In each case, $i^2+i$ is even. That is, $i^2+i=2p$ for some integer, $p$.\\
+        Continuing for $P(1)$ from above,
+      \begin{align*}
+        4(i^2+i) &= 8m\\
+        \implies 4(2p) &= 8m\\
+        \implies 8p &= 8m
+        \end{align*}
+        The above expression is true when $m=p$. Therefore, $P(1)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+        \underline{Inductive step}:\\
+        \begin{align*}
+          IH: P(k) : a^{2^k}-1 = 2^{k+2}m & \implies & a^{2^k} & = 2^{k+2}m+1 \\
+                                          & \implies & (a^{2^k})^2 & = (2^{k+2}m+1)^2 \\
+                                          & \implies & a^{2(2^k)} & = 2^{2(k+2)}m^2+2(2^{k+2})m+1 \\
+                                          & \implies & a^{2^{k+1}} & = 2^{2k+4}m^2+2^{k+3}m + 1\\
+                                          & \implies & a^{2^{k+1}} - 1 & = 2^{k+3}(2^{k+1}m^2+m)\\
+                                          &  &  & = 2^{k+3}m_1\\
+                                          & \implies & P(k+1)
+        \end{align*}
+        This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
     
   \part if $A_1, A_2,\ldots,A_n$ and $B$ are sets, then
@@ -43,25 +157,125 @@
       (A_1-B)\cup(A_2-B)\cup\ldots\cup(A_n-B)=(A_1\cup A_2\cup\ldots \cup A_n)-B
     \]
     \begin{solution}
-      % Enter your solution here.
+      We have to prove $P(n): \bigcup_{i=1}^n(A_i-B)=(\bigcup_{i=1}^nA_i) -B$.\\
+      We provide a proof by mathematical induction.
+      \begin{proof} $P(n)$ is true for all integers greater than $0$.
+
+      \underline{Base case}: $P(1)$:\\
+      \begin{align*}
+        (A_1-B) &= (A_1)-B\\
+        \implies A_1-B &= A_1-B
+        \end{align*}
+        $P(1)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+        Starting with LHS of $P(k+1)$:
+          \begin{multline*}
+          (A_1-B)\cup(A_2-B)\cup\ldots\cup(A_k-B)\cup(A_{k+1}-B)\\
+          =^{IH} ((A_1\cup A_2\cup\ldots \cup A_n)-B) \cup(A_{k+1}-B)\hfill\\
+          = \{ x\mid (x\in A_1 \lor x\in A_2 \lor\ldots\lor x\in A_k) \land x\not\in B\} \cup\{ x\mid (x\in A_{k+1} \land x\not\in B\}\hfill \\
+          = \{ x\mid ((x\in A_1 \lor x\in A_2 \lor\ldots\lor x\in A_k) \land x\not\in B)\lor (x\in A_{k+1} \land x\not\in B)\}\hfill \\
+          = \{ x\mid (x\in A_1 \lor x\in A_2 \lor\ldots\lor x\in A_k\lor x\in A_{k+1}) \land x\not\in B\}\hfill \\
+          = (A_1 \cup x\in A_2 \cup\ldots\cup A_k\cup A_{k+1}) - B \hfill
+        \end{multline*}
+        This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
   \end{parts}
 
 \question For which non-negative integers $n$ does the property $n^2 \le n!$ hold? Prove your answer using mathematical induction.
   \begin{solution}
-    % Enter your solution here.
+    We are given the statement $P(n): n^2\le n!$.\\
+    The non-negative values that it holds for are $n = 0, 1, 4, 5, 6, 7, 8, \ldots$.\\
+    We provide direct proofs for $n=0$ and $n=1$ and a proof by mathematical induction for $n\ge 4$.
+
+    \begin{proof} $P(n): n^2\le n!$ is true for $n=0,1,4,5,6,7,\ldots$.
+      \begin{align*}
+        P(0): & & P(1):\\
+        0^2  \le 0! && 1^2 \le 1!\\
+        \implies 0  \le 1 && \implies 1 \le 1
+      \end{align*}
+      $P(0)$ and $P(1)$ are true.
+
+      \underline{Base case}: $P(4)$:\\
+      \begin{align*}
+        4^2  & \le 4!\\
+        \implies 16  &\le 24
+      \end{align*}
+        $P(4)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+      Consider IH: $P(k): k^2\le k!$ or
+      \begin{align*}
+        k!\ge k^2 &\implies (k+1)k! \ge (k+1)k^2\\
+                  &\implies (k+1)! \ge (k+1)k^2\\
+                  &\implies (k+1)! \ge (k+1)k^2 \ge (k+1)(k+1)\\
+                  &\implies (k+1)! \ge (k+1)^2
+      \end{align*}
+      This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
   \end{solution}
 
 \question We are familiar with the Fibonacci numbers, defined as $f_{n+1} = f_n + f_{n-1}, f_0=1, f_1=1$ for all $n \geq 1$. The Fibonacci numbers turn out to have several interesting properties. Prove each of the following by mathematical induction.
   \begin{parts}
   \part $f_1 + f_2 + f_3 + \ldots + f_n = f_{n+2} - 1$.
     \begin{solution}
-      % Enter your solution here.
+      We are given the statement $P(n): \sum_{i=1}^n f_i = f_{n+2} - 1$.\\
+      Implicitly, we see that $n\ge 1$.\\
+      We provide a proof by mathematical induction for $P(n)$ over the domain.
+
+    \begin{proof} $P(n)$ is true for $n=\ge 1$.
+
+      \underline{Base case}: $P(1)$:
+      \begin{align*}
+        f_1 &= f_{1+2} - 1\\
+        \implies 1 &= f_{3} - 1\\
+        \implies 1 &= 2 - 1\\
+        \implies 1 &= 1
+      \end{align*}
+        $P(1)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+      \begin{align*}
+        IH: P(k): \sum_{i=1}^k f_i = f_{k+2} - 1 &\implies \sum_{i=1}^k f_i  +f_{k+1}= f_{k+2} - 1 +f_{k+1}\\
+                                           &\implies \sum_{i=1}^{k+1} f_i= f_{k+2} +f_{k+1} - 1\\
+                                           &\implies \sum_{i=1}^{k+1} f_i= f_{k+3} - 1\\
+                                           &\implies P(k+1)
+      \end{align*}
+      This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
 
   \part $f_2 + f_4 + f_6 + \ldots + f_{2n} = f_{2n+1} - 1$.
     \begin{solution}
-      % Enter your solution here.
+      We are given the statement $P(n): \sum_{i=1}^n f_{2i} = f_{2n+1} - 1$.\\
+      Implicitly, we see that $n\ge 1$.\\
+      We provide a proof by mathematical induction for $P(n)$ over the domain.
+
+    \begin{proof} $P(n)$ is true for $n=\ge 1$.
+
+      \underline{Base case}: $P(1)$:
+      \begin{align*}
+        f_{2(1)} &= f_{2(1)+1} - 1\\
+        \implies f_2 &= f_3 - 1\\
+        \implies 1 &= 2 - 1\\
+        \implies 1 &= 1
+      \end{align*}
+        $P(1)$ is true.\\
+        The base case for the proof by mathematical induction holds.
+
+      \underline{Inductive step}:\\
+      \begin{align*}
+        IH: P(k): \sum_{i=1}^k f_{2i} = f_{2k+1} - 1 &\implies \sum_{i=1}^k f_{2i}  +f_{2(k+1)}= f_{2k+1} - 1 +f_{2(k+1)}\\
+                                                     &\implies \sum_{i=1}^{k+1} f_{2i} = f_{2k+1} +f_{2k+2} - 1\\
+                                                     &\implies \sum_{i=1}^{k+1} f_{2i}= f_{2k+3} - 1 = f_{2(k+1)+1} - 1\\
+                                                     &\implies P(k+1)
+      \end{align*}
+      This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+      \end{proof}
     \end{solution}
   \end{parts}
 
@@ -69,8 +283,25 @@
 
   \textit{Hint}: A convex $n$-gon can be divided into a convex $(n-1)$-gon and a triangle.
   \begin{solution}
-    % Enter your solution here.
-  \end{solution}
+ We have to prove $P(n) :$ The sum of the interior angles of a convex $n$-gon is $(n-2)\pi$ radians for $n \geq 3$.
+
+ \begin{proof} $P(n)$ is true for all integers greater than 2.
+
+\underline{Base Case:} $P(3)$:
+
+It is a well known result that the sum of the interior angles of a convex $3$-gon, i.e., a triangle, is $\pi$ radians = $(3-2)\pi$ radians. \\
+Therefore, $P(3)$ is true.\\
+The base case for the proof by mathematical induction holds.
+
+\underline{Inductive Step:}
+
+Take, as the I.H., that $P(k)$ is true. \\
+Using the hint given in the question, a convex $(k+1)$-gon may be divided into a convex $k$-gon and a triangle.\\
+We know from the I.H. that the sum of the interior angles of a convex $k$-gon is $(k-2)\pi$ radians and from the base case, that a triangle's is $\pi$ radians. \\
+Therefore, the sum of the interior angles of a convex $(k+1)$-gon is $(k-2)\pi$ radians + $\pi$ radians = $(k-1)\pi$ radians.Thus $P(k+1)$ is true.\\
+This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+\end{proof}
+\end{solution}
   
 
 \end{questions}

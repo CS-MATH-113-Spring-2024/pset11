@@ -3,6 +3,12 @@
 \usepackage{amsfonts,amsmath,amssymb,amsthm}
 \usepackage{geometry}
 
+\usepackage{draftwatermark}
+\SetWatermarkText{Sample Solution}
+\SetWatermarkScale{3}
+\SetWatermarkLightness{.95}
+\printanswers
+
 \title{Problem Set 11: Mathematical Induction}
 \author{CS/MATH 113 Discrete Mathematics}
 \date{Spring 2024}
@@ -278,8 +284,25 @@
 
   \textit{Hint}: A convex $n$-gon can be divided into a convex $(n-1)$-gon and a triangle.
   \begin{solution}
-    % Enter your solution here.
-  \end{solution}
+ We have to prove $P(n) :$ The sum of the interior angles of a convex $n$-gon is $(n-2)\pi$ radians for $n \geq 3$.
+
+ \begin{proof} $P(n)$ is true for all integers greater than 2.
+
+\underline{Base Case:} $P(3)$:
+
+It is a well known result that the sum of the interior angles of a convex $3$-gon, i.e., a triangle, is $\pi$ radians = $(3-2)\pi$ radians. \\
+Therefore, $P(3)$ is true.\\
+The base case for the proof by mathematical induction holds.
+
+\underline{Inductive Step:}
+
+Take, as the I.H., that $P(k)$ is true. \\
+Using the hint given in the question, a convex $(k+1)$-gon may be divided into a convex $k$-gon and a triangle.\\
+We know from the I.H. that the sum of the interior angles of a convex $k$-gon is $(k-2)\pi$ radians and from the base case, that a triangle's is $\pi$ radians. \\
+Therefore, the sum of the interior angles of a convex $(k+1)$-gon is $(k-2)\pi$ radians + $\pi$ radians = $(k-1)\pi$ radians.Thus $P(k+1)$ is true.\\
+This completes the inductive step and the proof of $P(n)$ by mathematical induction.
+\end{proof}
+\end{solution}
   
 
 \end{questions}
